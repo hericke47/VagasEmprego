@@ -35,4 +35,18 @@ class Database {
       die('ERROR: '.$e->getMessage());
     }
   }
+
+  // método responsavel por executar querys dentro do banco de dados
+  public function execute($query, $params = []) {
+
+  }
+
+  public function insert($values) { // insere os dados no banco
+    //Dados da query
+    $fields = array_keys($values);
+    $binds = array_pad([],count($fields), '?');
+
+    //Monta a query
+    $query = 'INSERT INTO '.$this->table.'('.implode(',',$fields).') VALUES ('.implode(',',$binds).'))';
+  }
 }
